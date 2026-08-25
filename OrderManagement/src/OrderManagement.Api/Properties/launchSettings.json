@@ -1,0 +1,22 @@
+{
+  "profiles": {
+    "OrderManagement.Api": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "launchUrl": "scalar",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:51235;http://localhost:51236"
+    },
+    "Container (Dockerfile)": {
+      "commandName": "Docker",
+      "launchBrowser": true,
+      "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}/scalar",
+      "httpPort": 51237,
+      "sslPort": 51238,
+      "publishAllPorts": true,
+      "useSSL": true
+    }
+  }
+}

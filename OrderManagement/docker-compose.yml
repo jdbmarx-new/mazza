@@ -1,0 +1,35 @@
+services:
+  api:
+    container_name: ordermanagement-api
+
+    build:
+      context: .
+      dockerfile: src/OrderManagement.Api/Dockerfile
+    ports:
+      - "8080:8080"
+      - "8081:8080"
+
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      DatabasePath: /data/orders.db
+      Jwt__Key: ${JWT_KEY:-development-only-key-change-me-32-chars-minimum}
+
+    volumes:
+      - orders-data:/data
+
+    restart: unless-stopped
+
+  sonarqube:
+    image: sonarqube:community
+    container_name: ordermanagement-sonarqube
+
+    profiles:
+      - quality
+
+    ports:
+      - "9000:9000"
+
+    restart: unless-stopped
+
+volumes:
+  orders-data:
