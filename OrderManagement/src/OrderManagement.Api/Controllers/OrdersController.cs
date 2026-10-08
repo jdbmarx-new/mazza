@@ -18,8 +18,8 @@ public sealed class OrdersController(ISender sender) : ControllerBase
     public async Task<ActionResult<OrderDto>> Create(CreateOrderRequest r, CancellationToken cancellationToken)
     {
         OrderDto result = await sender.Send(new CreateOrderCommand(r.CustomerId,
-                                                              [.. r.Items.Select(i => new CreateOrderItem(i.ProductName, i.Quantity, i.UnitPrice))]),
-                                                              cancellationToken);
+                                                                   [.. r.Items.Select(i => new CreateOrderItem(i.ProductName, i.Quantity, i.UnitPrice))]),
+                                                                   cancellationToken);
         return CreatedAtAction(nameof(GetById),
                                new
                                {
